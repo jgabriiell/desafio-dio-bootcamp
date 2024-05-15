@@ -6,64 +6,64 @@ import java.util.Optional;
 import java.util.Set;
 
 public class Dev {
-    private String nome;
-    private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
-    private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+    private String name;
+    private Set<Content> registeredContents = new LinkedHashSet<>();
+    private Set<Content> completedContents = new LinkedHashSet<>();
 
-    public void inscreverBootcamp(Bootcamp bootcamp) {
-        this.conteudosInscritos.addAll(bootcamp.getConteudos());
-        bootcamp.getDevsInscritos().add(this);
+    public void registerBootcamp(Bootcamp bootcamp) {
+        this.registeredContents.addAll(bootcamp.getContents());
+        bootcamp.getRegisteredDevs().add(this);
     }
 
-    public void progredir() {
-        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
-        if (conteudo.isPresent()) {
-            this.conteudosConcluidos.add(conteudo.get());
-            this.conteudosInscritos.remove(conteudo.get());
+    public void progress() {
+        Optional<Content> content = this.registeredContents.stream().findFirst();
+        if (content.isPresent()) {
+            this.completedContents.add(content.get());
+            this.registeredContents.remove(content.get());
         } else {
-            System.err.println("Você não está inscrito em nenhum conteúdo");
+            System.err.println("You have no content registered");
         }
     }
 
-    public double calcularTotalXp() {
-        return this.conteudosConcluidos.stream()
-                .mapToDouble(Conteudo::calcularXp)
+    public double calculateXpTotal() {
+        return this.completedContents.stream()
+                .mapToDouble(Content::calculateXp)
                 .sum();
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Set<Conteudo> getConteudosInscritos() {
-        return conteudosInscritos;
+    public Set<Content> getRegisteredContents() {
+        return registeredContents;
     }
 
-    public void setConteudosInscritos(Set<Conteudo> conteudosInscritos) {
-        this.conteudosInscritos = conteudosInscritos;
+    public void setRegisteredContents(Set<Content> registeredContents) {
+        this.registeredContents = registeredContents;
     }
 
-    public Set<Conteudo> getConteudosConcluidos() {
-        return conteudosConcluidos;
+    public Set<Content> getCompletedContents() {
+        return completedContents;
     }
 
-    public void setConteudosConcluidos(Set<Conteudo> conteudosConcluidos) {
-        this.conteudosConcluidos = conteudosConcluidos;
+    public void setCompletedContents(Set<Content> completedContents) {
+        this.completedContents = completedContents;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Dev dev)) return false;
-        return Objects.equals(getNome(), dev.getNome()) && Objects.equals(getConteudosInscritos(), dev.getConteudosInscritos()) && Objects.equals(getConteudosConcluidos(), dev.getConteudosConcluidos());
+        return Objects.equals(getName(), dev.getName()) && Objects.equals(getRegisteredContents(), dev.getRegisteredContents()) && Objects.equals(getCompletedContents(), dev.getCompletedContents());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getNome(), getConteudosInscritos(), getConteudosConcluidos());
+        return Objects.hash(getName(), getRegisteredContents(), getCompletedContents());
     }
 }

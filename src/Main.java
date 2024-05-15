@@ -1,61 +1,60 @@
 import br.com.dio.desafio.dominio.Bootcamp;
-import br.com.dio.desafio.dominio.Curso;
+import br.com.dio.desafio.dominio.Course;
 import br.com.dio.desafio.dominio.Dev;
-import br.com.dio.desafio.dominio.Mentoria;
+import br.com.dio.desafio.dominio.Mentoring;
 
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
 
-        Curso curso1 = new Curso();
-        curso1.setTitulo("Java");
-        curso1.setDescricao("Aprendendo Java");
-        curso1.setCargaHoraria(30);
+        Course course = new Course();
+        course.setTittle("Java");
+        course.setDescription("Learning Java");
+        course.setStudyLoad(30);
 
-        Curso curso2 = new Curso();
-        curso2.setTitulo("Curso js");
-        curso2.setDescricao("Descricao curso js");
-        curso2.setCargaHoraria(20);
+        Course course2 = new Course();
+        course2.setTittle("Js course");
+        course2.setDescription("Js course Description");
+        course2.setStudyLoad(20);
 
-        Mentoria mentoria = new Mentoria();
-        mentoria.setTitulo("Importancia do Java");
-        mentoria.setDescricao("descrição mentoria Java");
-        mentoria.setData(LocalDate.now());
+        Mentoring mentoria = new Mentoring();
+        mentoria.setTittle("Importance of Java");
+        mentoria.setDescription("Java mentoring description");
+        mentoria.setDate(LocalDate.now());
 
         Bootcamp bootcamp = new Bootcamp();
-        bootcamp.setNome("Bootcamp Java Developer");
-        bootcamp.setDescricao("Decrição Bootcamp Java Developer");
-        bootcamp.getConteudos().add(curso1);
-        bootcamp.getConteudos().add(curso2);
-        bootcamp.getConteudos().add(mentoria);
-
+        bootcamp.setName("Bootcamp Java Developer");
+        bootcamp.setDescription("Bootcamp Java Developer description");
+        bootcamp.getContents().add(course);
+        bootcamp.getContents().add(course2);
+        bootcamp.getContents().add(mentoria);
 
         Dev devJoao = new Dev();
-        devJoao.setNome("João");
-        devJoao.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos João " + devJoao.getConteudosInscritos());
+        devJoao.setName("Jon");
+        devJoao.registerBootcamp(bootcamp);
+        System.out.println("Registered contents Jon " + devJoao.getRegisteredContents());
 
-        devJoao.progredir();
-        devJoao.progredir();
+        devJoao.progress();
+        devJoao.progress();
         System.out.println("------------------------------------------");
-        System.out.println("Conteúdos Inscritos João " + devJoao.getConteudosInscritos());
-        System.out.println("Conteúdos concluídos João " + devJoao.getConteudosConcluidos());
-        System.out.println("XP: " + devJoao.calcularTotalXp());
+        System.out.println("Registered contents Jon " + devJoao.getRegisteredContents());
+        System.out.println("Completed contents Jon " + devJoao.getCompletedContents());
+        System.out.println("XP: " + devJoao.calculateXpTotal());
 
         System.out.println("------------------------------------------");
 
         Dev devGabriel = new Dev();
-        devGabriel.setNome("Gabriel");
-        devGabriel.inscreverBootcamp(bootcamp);
-        System.out.println("Conteúdos Inscritos Gabriel " + devGabriel.getConteudosInscritos());
+        devGabriel.setName("Gabriel");
+        devGabriel.registerBootcamp(bootcamp);
+        System.out.println("Registered contents Gabriel " + devGabriel.getRegisteredContents());
 
-        devGabriel.progredir();
-        devGabriel.progredir();
-        devGabriel.progredir();
+        devGabriel.progress();
+        devGabriel.progress();
+        devGabriel.progress();
         System.out.println("-------------------------------------------");
-        System.out.println("Conteúdos Inscritos Gabriel " + devGabriel.getConteudosInscritos());
-        System.out.println("Conteúdos concluídos Gabriel " + devGabriel.getConteudosConcluidos());
-        System.out.println("XP: " + devGabriel.calcularTotalXp());
+        System.out.println("Registered contents Gabriel " + devGabriel.getRegisteredContents());
+        System.out.println("Completed contents Gabriel " + devGabriel.getCompletedContents());
+        System.out.println("XP: " + devGabriel.calculateXpTotal());
     }
 }
